@@ -2,7 +2,7 @@
 using FiapEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FiapEstoque.Messaging
+using FiapEstoque.Messaging;
 
 namespace FiapEstoque.Controllers;
 [ApiController]
