@@ -10,8 +10,6 @@
 
 404 - Not Found: Indica que o recurso solicitado não existe ou a URL está incorreta.
 
-======================================================
-
 **3.2)** O que o atributo `[ApiController]` faz? O que acontece se você enviar um JSON com o campo obrigatório vazio?
 
 O atributo [ApiController] indica que o controller é usado para criar uma API e ativa recursos automáticos, como validação de dados enviados na requisição e respostas de erro padronizadas.
@@ -33,18 +31,15 @@ null (200): indica que a requisição foi bem-sucedida, mas sem deixar claro que
 
 O Change Tracker do EF Core é um componente interno do DbContext responsável por monitorar as alterações feitas nas entidades.
 
-Quando você chama \_ctx.SeuDbSet.Add(objeto) ele marca o objeto como novo para ser salvo no banco.
-
+Quando você chama \_ctx.SeuDbSet.Add(objeto) ele marca o objeto como novo para ser salvo no banco.<br>
 Quando executa await \_ctx.SaveChangesAsync() ele cria o comando SQL INSERT e salva o objeto no banco de dados.
 
 **3.5)** Qual a diferença entre `FindAsync(id)` e `ToListAsync()`? Qual SQL cada um gera?
 
-FindAsync(id): busca um registro específico pelo ID.
-
+FindAsync(id): busca um registro específico pelo ID.<br>
 SELECT \* FROM Tabela WHERE Id = @id
 
-ToListAsync(): busca todos os registros da tabela.
-
+ToListAsync(): busca todos os registros da tabela.<br>
 SELECT \* FROM Tabela
 
 **3.6)** Por que usamos `EntityState.Modified` no PUT ao invés de buscar o objeto primeiro e alterar campo a campo?
