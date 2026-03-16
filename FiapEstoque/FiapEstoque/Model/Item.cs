@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FiapEstoque.Models
 {
-    [Table("T_ITens")]
+    [Table("T_Itens")]
     public class Item
     {
         [Key]
