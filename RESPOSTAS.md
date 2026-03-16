@@ -44,6 +44,8 @@ SELECT \* FROM Tabela
 
 **3.6)** Por que usamos `EntityState.Modified` no PUT ao invés de buscar o objeto primeiro e alterar campo a campo?
 
+A principal razão é a performance e simplicidade, pois evita uma consulta de banco de dados antes da atualização.
+
 ### Sobre Mensageria
 
 **3.7)** Qual a diferença entre comunicação síncrona e assíncrona? Dê um exemplo real (fora do projeto) de cada uma.
