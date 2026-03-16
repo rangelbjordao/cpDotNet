@@ -10,6 +10,8 @@
 
 404 - Not Found: Indica que o recurso solicitado não existe ou a URL está incorreta.
 
+======================================================
+
 **3.2)** O que o atributo `[ApiController]` faz? O que acontece se você enviar um JSON com o campo obrigatório vazio?
 
 O atributo [ApiController] indica que o controller é usado para criar uma API e ativa recursos automáticos, como validação de dados enviados na requisição e respostas de erro padronizadas.
