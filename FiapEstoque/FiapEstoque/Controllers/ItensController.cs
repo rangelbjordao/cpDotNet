@@ -2,6 +2,8 @@
 using FiapEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using FiapEstoque.Messaging
+
 namespace FiapEstoque.Controllers;
 [ApiController]
 [Route("api/[controller]")]
@@ -31,10 +33,11 @@ public class ItensController
 
     [HttpPost]
     public async Task<IActionResult>
- Create(Item item)
+    Create(Item item)
     {
         _ctx.Itens.Add(item);
         await _ctx.SaveChangesAsync();
+        RabbitMqProducer.Publish(item);
         return CreatedAtAction(
         nameof(GetById),
         new { id = item.Id },
