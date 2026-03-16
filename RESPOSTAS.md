@@ -32,6 +32,7 @@ null (200): indica que a requisição foi bem-sucedida, mas sem deixar claro que
 O Change Tracker do EF Core é um componente interno do DbContext responsável por monitorar as alterações feitas nas entidades.
 
 Quando você chama \_ctx.SeuDbSet.Add(objeto) ele marca o objeto como novo para ser salvo no banco.
+
 Quando executa await \_ctx.SaveChangesAsync() ele cria o comando SQL INSERT e salva o objeto no banco de dados.
 
 **3.5)** Qual a diferença entre `FindAsync(id)` e `ToListAsync()`? Qual SQL cada um gera?
