@@ -50,6 +50,12 @@ A principal razão é a performance e simplicidade, pois evita uma consulta de b
 
 **3.7)** Qual a diferença entre comunicação síncrona e assíncrona? Dê um exemplo real (fora do projeto) de cada uma.
 
+Comunicação síncrona: A requisição é enviada e o sistema espera a resposta para continuar.<br>
+Exemplo: uma ligação, você fala e espera a outra pessoa responder.
+
+Comunicação assíncrona: A requisição é enviada e o sistema não precisa esperar a resposta para continuar.<br>
+Exemplo: enviar uma mensagem, você envia a mensagem e a outra pessoa responde depois.
+
 **3.8)** O que é o ACK (Acknowledge) no RabbitMQ? O que acontece se o Consumer processar a mensagem mas NÃO enviar o ACK?
 
 **3.9)** Por que o `RabbitMqConsumer` herda de `BackgroundService` e não de `ControllerBase`? Qual a diferença de ciclo de vida?
