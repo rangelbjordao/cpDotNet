@@ -1,5 +1,6 @@
 using FiapEstoque.Data;
 using Microsoft.EntityFrameworkCore;
+using FiapEstoque.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 builder.Services.AddDbContext<AppDbContext>(opt =>
 opt.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
+builder.Services.AddHostedService<RabbitMqConsumer>();
 
 var app = builder.Build();
 
