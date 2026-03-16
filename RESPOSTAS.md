@@ -36,7 +36,7 @@ Quando executa await \_ctx.SaveChangesAsync() ele cria o comando SQL INSERT e sa
 
 **3.5)** Qual a diferença entre `FindAsync(id)` e `ToListAsync()`? Qual SQL cada um gera?
 
-FindAsync(id): busca um registro específico pelo ID.
+FindAsync(id): busca um registro específico pelo ID. \n
 SELECT \* FROM Tabela WHERE Id = @id
 
 ToListAsync(): busca todos os registros da tabela.
