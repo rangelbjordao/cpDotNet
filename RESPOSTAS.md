@@ -4,26 +4,26 @@
 
 200 - OK: Significa que a solicitação foi bem-sucedida.
 
-201 Created: A requisição foi bem sucedida e um novo recurso foi criado como resultado.
+201 - Created: A requisição foi bem sucedida e um novo recurso foi criado como resultado.
 
-204 No Content: A requisição foi um sucesso, mas não há conteúdo para retornar.
+204 - No Content: A requisição foi um sucesso, mas não há conteúdo para retornar.
 
 404 - Not Found: Indica que o recurso solicitado não existe ou a URL está incorreta.
 
 **3.2)** O que o atributo `[ApiController]` faz? O que acontece se você enviar um JSON com o campo obrigatório vazio?
 
-O atributo [ApiController] indica que o controller é usado para criar uma API e ativa recursos automáticos, como validação de dados enviados na requisição e respostas de erro padronizadas.
+O ApiController indica que o controller é usado para criar uma API e ativa recursos automáticos, como validação de dados enviados na requisição e respostas de erro padronizadas.
 
-Se um JSON for enviado com um campo obrigatório vazio, a validação falha automaticamente e a API retorna HTTP 400 sem executar o método do controller.
+Se um JSON for enviado com um campo obrigatório vazio, a validação falha e a API retorna HTTP 400 sem executar o método do controller.
 
 **3.3)** Por que o método `GetById` retorna `NotFound()` em vez de retornar `null`? Qual a diferença para o cliente da API?
 
 O método GetById retorna NotFound() para informar ao cliente da API que o recurso solicitado não existe.
-Se o seu método retornasse null, o framework geralmente entenderia isso como um sucesso.
+Se o seu método retornasse null, o cliente entenderia isso como um sucesso.
 
-A principal diferença está na forma como o cliente interpreta o resultado:
-NotFound() (404): indica claramente que o recurso com aquele ID não foi encontrado.
-null (200): indica que a requisição foi bem-sucedida, mas sem deixar claro que o recurso não existe.
+A principal diferença é a forma que o cliente interpreta o retorno:
+NotFound(): indica que o recurso com aquele ID não foi encontrado.<br>
+null: indica que a requisição foi sucesso, mas sem indicar que o recurso não existe.
 
 ### Sobre Entity Framework Core
 
@@ -58,6 +58,18 @@ Exemplo: enviar uma mensagem, você envia a mensagem e a outra pessoa responde d
 
 **3.8)** O que é o ACK (Acknowledge) no RabbitMQ? O que acontece se o Consumer processar a mensagem mas NÃO enviar o ACK?
 
+O ACK é uma confirmação enviada pelo consumidor ao broker, indicando que a mensagem foi processada.
+
+Se o consumer não enviar o ACK a mensagem pode ser enviada novamente.
+
 **3.9)** Por que o `RabbitMqConsumer` herda de `BackgroundService` e não de `ControllerBase`? Qual a diferença de ciclo de vida?
 
+Porque ele precisa rodar continuamente em segundo plano e o BackgroundService faz isso, e o ControllerBase só executa quando tem requisições.
+
+O ciclo de vida do BackgroundService dura enquanto a aplicação estiver rodando, e do ControllerBase é o tempo de cada requisição.
+
 **3.10)** Se o RabbitMQ estiver fora do ar no momento do POST, o que acontece? O produto é salvo no Oracle? A API retorna erro? Sugira uma melhoria para tratar esse caso.
+
+Se o RabbitMQ estiver fora do ar, a mensagem não é enviada, o produto pode ser salvo e a API pode retornar erro.
+
+Uma melhoria seria salvar o produto no banco e a mensagem em uma tabela outbox no mesmo POST.
