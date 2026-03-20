@@ -1,6 +1,8 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using System.Text.Json;
+using FiapEstoque.Models;
 
 namespace FiapEstoque.Messaging
 {
@@ -16,6 +18,13 @@ namespace FiapEstoque.Messaging
             consumer.Received += (s, e) => {
                 var msg = Encoding.UTF8.GetString(e.Body.ToArray());
                 Console.WriteLine($"[Consumer] Recebido: {msg}");
+
+                var item = JsonSerializer.Deserialize<Item>(msg);
+                if (item != null && item.Quantidade < 0)
+                {
+                    Console.WriteLine($"[Consumer] ALERTA: Item '{item.Nome}' com quantidade negativa!");
+                }
+
                 ch.BasicAck(e.DeliveryTag, false); // ACK manual
             };
             ch.BasicConsume("item-criado", false, consumer); // autoAck=false
