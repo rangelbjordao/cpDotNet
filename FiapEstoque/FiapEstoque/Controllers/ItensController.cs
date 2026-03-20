@@ -37,7 +37,14 @@ public class ItensController
     {
         _ctx.Itens.Add(item);
         await _ctx.SaveChangesAsync();
-        RabbitMqProducer.Publish(item);
+        try
+        {
+            RabbitMqProducer.Publish(item);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Producer] ERRO ao publicar mensagem: {ex.Message}");
+        }
         return CreatedAtAction(
         nameof(GetById),
         new { id = item.Id },
